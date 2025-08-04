@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hari Krishna Bonala - Data Science Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-20px, -20px) rotate(180deg); }
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            color: white;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .name {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .title {
+            font-size: 1.3em;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            transition: transform 0.3s ease;
+        }
+        .contact-item:hover {
+            transform: translateY(-2px);
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+            min-height: 600px;
+        }
+        .sidebar {
+            background: #f8f9fa;
+            padding: 40px 30px;
+            border-right: 1px solid #e9ecef;
+        }
+        .content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 2px;
+        }
+        .skill-item {
+            margin-bottom: 15px;
+        }
+        .skill-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        .skill-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+            animation: skillLoad 2s ease-in-out;
+        }
+        @keyframes skillLoad {
+            from { width: 0; }
+        }
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .experience-item:hover, .education-item:hover, .project-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .job-title, .degree-title, .project-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .company, .school {
+            font-weight: 500;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        .date {
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        .description {
+            color: #555;
+            line-height: 1.6;
+        }
+        .cert-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .cert-item:last-child {
+            border-bottom: none;
+        }
+        .cert-badge {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .skill-tag {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        .print-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .gpa-badge {
+            background: #27ae60;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }           
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }        
+            .name {
+                font-size: 2em;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }   
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            } 
+            .print-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="profile-img">🎯</div>
+            <h1 class="name">HARI KRISHNA BONALA</h1>
+            <p class="title">Fresher | MCA Graduate</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>harikrishnasanna@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>+91 9182428534</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>Bengaluru, India</span>
+                </div>
+                <div class="contact-item">
+                    <span>💼</span>
+                    <span>linkedin.com/in/harikrishna-bonala-20267b278</span>
+                </div>
+                <div class="contact-item">
+                    <span>🔗</span>
+                    <span>github.com/HariKrishna1-DS</span>
+                </div>
+            </div>
+        </header>
+        <div class="main-content">
+            <aside class="sidebar">
+                <section class="section">
+                    <h2 class="section-title">Core Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-tag">Python</div>
+                        <div class="skill-tag">Machine Learning</div>
+                        <div class="skill-tag">Deep Learning</div>
+                        <div class="skill-tag">Pandas</div>
+                        <div class="skill-tag">NumPy</div>
+                        <div class="skill-tag">Scikit-Learn</div>
+                        <div class="skill-tag">TensorFlow</div>
+                        <div class="skill-tag">MySQL</div>
+                        <div class="skill-tag">Power BI</div>
+                        <div class="skill-tag">Matplotlib</div>
+                        <div class="skill-tag">Seaborn</div>
+                        <div class="skill-tag">NLP</div>
+                        <div class="skill-tag">Excel</div>
+                        <div class="skill-tag">C Programming</div>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2 class="section-title">Certifications</h2>
+                    <div class="cert-item">
+                        <span>Data Science Tools (IBM)</span>
+                        <span class="cert-badge">IBM</span>
+                    </div>
+                    <div class="cert-item">
+                        <span>Machine Learning for Data Science</span>
+                        <span class="cert-badge">IBM</span>
+                    </div>
+                    <div class="cert-item">
+                        <span>Data Analytics & Visualization</span>
+                        <span class="cert-badge">Accenture</span>
+                    </div>
+                    <div class="cert-item">
+                        <span>CISCO Networking Academy</span>
+                        <span class="cert-badge">CISCO</span>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2 class="section-title">Technical Tools</h2>
+                    <div style="line-height: 2;">
+                        <div>🐍 Python & Jupyter Notebook</div>
+                        <div>📊 Power BI & Data Visualization</div>
+                        <div>🗄️ SQL & Database Management</div>
+                        <div>🤖 Scikit-Learn & TensorFlow</div>
+                        <div>📈 Statistical Analysis</div>
+                        <div>🌐 Web Development (HTML/CSS)</div>
+                    </div>
+                </section>
+            </aside>
+            <main class="content">
+                <section class="section">
+                    <h2 class="section-title">Professional Summary</h2>
+                    <p class="description">
+                        Enthusiastic and detail-oriented MCA graduate with a strong foundation in machine learning, data analysis, and Python programming. Proficient in tools like Pandas, NumPy, Scikit-learn, and SQL, with hands-on experience in building data-driven solutions and predictive models. Passionate about transforming data into actionable insights through comprehensive EDA, classification, regression, and advanced visualization techniques. Eager to contribute analytical skills to solve real-world business problems in dynamic data-centric environments.
+                    </p>
+                </section>
+                <section class="section">
+                    <h2 class="section-title">Professional Experience</h2>                    
+                    <div class="experience-item">
+                        <div class="job-title">Data Science Intern</div>
+                        <div class="company">Internship Studio India</div>
+                        <div class="date">December 2024 - May 2025</div>
+                        <div class="description">
+                            Currently working on advanced data science projects involving machine learning algorithms and data analysis. Collecting and analyzing data from various social media platforms using Python and statistical methods. Applying SVM and Logistic Regression algorithms for predictive modeling and sentiment analysis.
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2 class="section-title">Key Projects</h2>                
+                    <div class="project-item">
+                        <div class="project-title">Analysis of Women Safety in Indian cities using Machine Learning based on Tweets </div>
+                        <div class="date">Machine Learning & NLP Project</div>
+                        <div class="description">
+                            Collected data from multiple social media platforms and applied machine learning algorithms including SVM and Logistic Regression to analyze women's safety sentiment in metropolitan cities. Implemented Natural Language Processing techniques for comprehensive sentiment analysis on social media tweets.
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">IPL Auction 2024 Strategic Analysis</div>
+                        <div class="date">SQL Data Analysis Project</div>
+                        <div class="description">
+                            Performed comprehensive SQL-based analysis on IPL auction datasets containing player statistics and team budgets. Generated strategic insights for team composition and player valuation using advanced SQL queries. Created data models to support auction decision-making processes.
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">COVID-19 Pandemic Trends Analysis</div>
+                        <div class="date">Machine Learning & Data Visualization</div>
+                        <div class="description">
+                            Conducted comprehensive COVID-19 trend analysis using Python pandas and NumPy for trend identification. Applied time series analysis and predictive modeling to forecast pandemic patterns. Created compelling data visualizations using Matplotlib and Seaborn for stakeholder presentations.
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">House Price Prediction System</div>
+                        <div class="date">Python & Machine Learning Web Application</div>
+                        <div class="description">
+                            Developed end-to-end machine learning solution for house price prediction using Linear and Lasso Regression. Collected and cleaned real estate data, handled missing values, and performed feature engineering. Deployed the model as a web application for real-time predictions.
+                            <br><strong>GitHub:</strong> github.com/HariKrishna1-DS/Project
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2 class="section-title">Education</h2>                    
+                    <div class="education-item">
+                        <div class="degree-title">Master of Computer Applications (MCA)</div>
+                        <div class="school">Sri Balaji PG College, Anantapur</div>
+                        <div class="date">August 2023 - April 2025</div>
+                        <span class="gpa-badge">GPA: 8.18</span>
+                        <div class="description">
+                            Specialized in Computer Science with focus on Data Science, Machine Learning, and Advanced Programming. Completed comprehensive coursework in algorithms, database systems, and software engineering.
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="degree-title">Bachelor of Science</div>
+                        <div class="school">Government College (Autonomous), Anantapur</div>
+                        <div class="date">July 2020 - June 2023</div>
+                        <span class="gpa-badge">GPA: 8.48</span>
+                        <div class="description">
+                            Mathematics, Statistics, and Computer Applications. Built strong foundation in statistical analysis, mathematical modeling, and computational problem-solving.
+                        </div>
+                    </div>
+                    <div class="education-item">
+                        <div class="degree-title">Intermediate (MEC)</div>
+                        <div class="school">MJPAPBCWR Jr. College, Anantapur</div>
+                        <div class="date">June 2018 - May 2020</div>
+                        <span class="gpa-badge">GPA: 7.37</span>
+                        <div class="description">
+                            Mathematics, Economics, and Commerce. Developed Economical thinking , Statistical Analysis and quantitative reasoning skills.
+                        </div>
+                    </div>
+                </section>
+                <section class="section">
+                    <h2 class="section-title">Key Achievements</h2>
+                    <div class="description">
+                        <div style="margin-bottom: 10px;">🎓 <strong>Academic Excellence</strong> - Consistently maintained high GPA across all educational levels</div>
+                        <div style="margin-bottom: 10px;">🏆 <strong>Multiple Certifications</strong> - Completed prestigious IBM and industry-recognized certification programs</div>
+                        <div style="margin-bottom: 10px;">💻 <strong>Project Portfolio</strong> - Developed 4+ comprehensive data science projects with real-world applications</div>
+                        <div style="margin-bottom: 10px;">🚀 <strong>Technical Proficiency</strong> - Expert-level skills in Python, Machine Learning, and Data Analysis frameworks</div>
+                        <div style="margin-bottom: 10px;">📊 <strong>End-to-End Solutions</strong> - Successfully deployed machine learning models as functional web applications</div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <button class="print-btn" onclick="window.print()">📄 Print Resume</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate skill tags with staggered effect
+            const skillTags = document.querySelectorAll('.skill-tag');
+            skillTags.forEach((tag, index) => {
+                tag.style.opacity = '0';
+                tag.style.transform = 'translateY(20px)';         
+                setTimeout(() => {
+                    tag.style.transition = 'all 0.5s ease';
+                    tag.style.opacity = '1';
+                    tag.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+            // Add hover effects to sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.transition = 'transform 0.3s ease';
+                });              
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            // Add click-to-copy functionality for contact info
+            const contactItems = document.querySelectorAll('.contact-item');
+            contactItems.forEach(item => {
+                item.style.cursor = 'pointer';
+                item.title = 'Click to copy';                
+                item.addEventListener('click', function() {
+                    const text = this.textContent.replace(/[📧📱📍💼🔗]/g, '').trim();
+                    navigator.clipboard.writeText(text).then(() => {
+                        const originalBg = this.style.background;
+                        this.style.background = 'rgba(52, 152, 219, 0.2)';
+                        this.style.borderRadius = '5px';         
+                        setTimeout(() => {
+                            this.style.background = originalBg;
+                        }, 1000);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
