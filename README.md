@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <marquee style="font-size: 20px ;	scrollamount="30" ><font color ="Blue"> the Houses prices is based on 2023&2024 </font></marquee>
